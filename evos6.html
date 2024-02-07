@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skirta Evai - Valentino diena</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffcccc; /* Light pink background */
+            text-align: center;
+            animation: dance 1s infinite; /* Added dancing effect to the entire body */
+        }
+
+        @keyframes dance {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        header {
+            background-color: #ff4d4d; /* Red header */
+            color: #fff;
+            padding: 1em;
+            animation: rotateHeader 5s infinite linear; /* Rotate header text */
+        }
+
+        @keyframes rotateHeader {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        section {
+            position: relative; /* Added position relative for absolute positioning inside */
+            max-width: 600px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff; /* White content background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: scaleSection 2s infinite alternate; /* Scale section in and out */
+        }
+
+        @keyframes scaleSection {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 24px; /* Adjust font size */
+            animation: rainbowColor 5s infinite; /* Rainbow color animation for h1 */
+        }
+
+        p.rainbow-text {
+            font-size: 20px;
+            animation: rainbowColor 5s infinite;
+        }
+
+        @keyframes rainbowColor {
+            0% { color: #ff0000; } /* Red */
+            16.666% { color: #ff8000; } /* Orange */
+            33.333% { color: #ffff00; } /* Yellow */
+            50% { color: #00ff00; } /* Green */
+            66.666% { color: #0000ff; } /* Blue */
+            83.333% { color: #8000ff; } /* Indigo */
+            100% { color: #ff00ff; } /* Violet */
+        }
+
+        button {
+            font-size: 20px; /* Larger font size */
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease; /* Added transition for smooth size change */
+            animation: dance 1s infinite; /* Added dancing effect to buttons */
+        }
+
+        button.yes {
+            font-family: 'Verdana', sans-serif;
+            background-color: #4CAF50; /* Green "Yes" button */
+            color: white;
+            padding: 20px 40px; /* Larger padding */
+        }
+
+        button.no {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #ff4d4d; /* Red "No" button */
+            color: white;
+            padding: 20px 40px; /* Larger padding */
+        }
+
+        #loveMessage {
+            font-size: 40px;
+            margin-top: 20px;
+            color: #ff4d4d; /* Red text color */
+            display: none;
+            animation: glow 2s infinite alternate; /* Glowing effect on love message */
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #ff4d4d;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff4d4d, 0 0 30px #ff4d4d, 0 0 40px #ff4d4d;
+            }
+        }
+
+        #loveImageContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #loveImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px; /* Rounded corners for the image */
+        }
+
+        #errorMessage {
+            color: #ff4d4d;
+            font-size: 24px; /* Larger font size for error message */
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* Confetti styles */
+        #confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            background: #ffcc00; /* Yellow confetti color */
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: confetti-fall linear infinite;
+            animation-duration: 2s;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>❤ EVAI BUITKUTEI ❤</h1>
+    </header>
+
+    <section>
+        <p class="rainbow-text">❤❤❤❤❤❤ Eva! Will U be My Valentine? ❤❤❤❤❤❤</p>
+        <button class="yes" onclick="showLoveMessage()">❤ TAIP ❤</button>
+        <button class="no" onclick="showErrorMessage()">NE 😈</button>
+        
+        <div id="loveMessage">Ačiū! Myliu tave!</div>
+
+        <!-- Container for the love image -->
+        <div id="loveImageContainer">
+            <img id="loveImage" src="" alt="Love Image">
+        </div>
+
+        <p id="errorMessage">ERROR! TRY AGAIN!</p>
+
+        <!-- Confetti for celebration -->
+        <div id="confetti"></div>
+
+        <!-- Audio element for background music -->
+        <audio id="backgroundMusic" loop>
+            <source src="https://pouch.jumpshare.com/preview/JPU2V-bI5M9x5LqjzJX2Zwoyz2sVmQnmk-pvrYUoANaMEF1bcTd29WpG-FPBUM4kFuFWoaCfgSoRyOTJuU5ifnNd1hoLeBgbsBwwdJt-Vhn8KPppMR5Yt1w6U1eINlLhkNE9whDb5Qa0RlQ4jPSP7aN_fIMI2zJarj0avEcXWfs.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
+
+    <script>
+        var noButtonClickCount = 0;
+        var loveMessages = [
+            "Ačiū! Myliu tave!",
+            "Ouuu yeee! Matau, kad manęs pasiilgai!",
+            "O tu nesiliauji! Aš sužavėtas!",
+            "GERAI JAU IKALBĖJAI! PADARYSIM TAI! LAUK VASARIO 14D."
+        ];
+
+        var loveMessageIndex = 0;
+
+        var loveImages = [
+            "https://i.pinimg.com/originals/2a/34/c9/2a34c95330d483685437ae5698b12fd9.gif",
+            "https://i.pinimg.com/originals/84/45/c9/8445c9b61ab70fafa06e518fd72c7172.gif",
+            "https://i.pinimg.com/originals/db/24/6d/db246da23abc74b17ec9e11eb84ea62e.gif",
+            "https://i.ibb.co/MC5nSgd/37243.gif"
+            // Add more image URLs as needed
+        ];
+
+        var loveImageIndex = 0;
+
+        function showLoveMessage() {
+            var loveMessage = document.getElementById('loveMessage');
+            var loveImageContainer = document.getElementById('loveImageContainer');
+            var loveImage = document.getElementById('loveImage');
+            var errorMessage = document.getElementById('errorMessage');
+            
+            loveMessage.innerText = loveMessages[loveMessageIndex];
+            loveMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+
+            // Display the love image in the center
+            loveImageContainer.style.display = 'flex';
+            loveImage.src = loveImages[loveImageIndex];
+            loveImage.style.display = 'block';
+
+            // Start playing background music
+            var backgroundMusic = document.getElementById('backgroundMusic');
+            backgroundMusic.play();
+
+            // Show confetti for celebration
+            var confettiContainer = document.getElementById('confetti');
+            for (var i = 0; i < 50; i++) {
+                var confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = Math.random() * 2 + 1 + 's';
+                confettiContainer.appendChild(confetti);
+            }
+
+            // Increment the message and image indices and reset if they reach the end
+            loveMessageIndex = (loveMessageIndex + 1) % loveMessages.length;
+            loveImageIndex = (loveImageIndex + 1) % loveImages.length;
+
+            // Display a surprise message after the second click on "Yes"
+            if (noButtonClickCount === 1) {
+                noButtonClickCount++;
+                return;
+            }
+
+            if (noButtonClickCount === 2) {
+                setTimeout(function () {
+                    alert("SURPRISE! Atrakinai slaptą žinutę! PASIPISAM?");
+                }, 3000);
+            }
+            noButtonClickCount++;
+        }
+
+        function showErrorMessage() {
+            var loveMessage = document.getElementById('loveMessage');
+            var loveImageContainer = document.getElementById('loveImageContainer');
+            var errorMessage = document.getElementById('errorMessage');
+            
+            loveMessage.style.display = 'none';
+            loveImageContainer.style.display = 'none';
+            errorMessage.style.display = 'block';
+
+            // Decrease the size of the "No" button
+            var noButton = document.querySelector('.no');
+            var currentSize = parseInt(window.getComputedStyle(noButton).fontSize);
+            noButton.style.fontSize = (currentSize - 5) + 'px';
+
+            // Increment the click count and hide the button if clicked more than 2 times
+            noButtonClickCount++;
+            if (noButtonClickCount > 2) {
+                noButton.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
